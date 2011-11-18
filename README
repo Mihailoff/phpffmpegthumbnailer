@@ -1,0 +1,42 @@
+PHP Class wrapper to ffmpegthumbnailer utility.
+
+== Basic usage ==
+
+<?php
+$fft = new FFMpegThumbnailer\FFMpegThumbnailer( $file_path );
+$fft->setOutput( 'out.jpeg' )
+	->run();
+?>
+
+== Batch usage ==
+
+To improve execution speed we can
+
+<?php
+$ffts = array();
+for ( $i = 20; $i <= 90; $i += 20 )
+{
+	$ffts[] = new FFMpegThumbnailer\FFMpegThumbnailer( $file_path );
+	$fft->setOutput( "out_{$i}.jpeg" )
+		->setSeekTime( $i );
+}
+
+$batch_ffts = new FFMpegThumbnailer\Batch( $ffts );
+$batch_ffts->setOutputOriginalSize() // applied to each thumbnailer
+	  ->run();
+?>
+
+== About ffmpegthumbnailer ==
+
+ffmpegthumbnailer can be used to create thumbnails for your video files. The thumbnailer uses ffmpeg to decode frames from the video files, so supported videoformats depend on the configuration flags of ffmpeg.
+
+This thumbnailer was designed to be as fast and lightweight as possible. The only dependencies are ffmpeg, libpng and libjpeg.
+
+The project also includes a C/C++ library that can be used by developers to generate thumbnails in their projects
+
+http://code.google.com/p/ffmpegthumbnailer/
+
+== Changelog ==
+
+[mm/yyyy]
+11/2011 - Initial commit with basic functionality
