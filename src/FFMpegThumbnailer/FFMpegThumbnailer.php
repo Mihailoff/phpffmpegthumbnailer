@@ -11,6 +11,7 @@ class FFMpegThumbnailer
 {
 	/**
 	 * Path to ffmpegthumbnailer utility
+	 * You need to be careful with $PATH, in some cases it is need the full path
 	 * 
 	 * @var string
 	 */
